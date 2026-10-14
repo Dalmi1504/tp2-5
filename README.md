@@ -36,7 +36,7 @@ El proyecto utiliza `esquema.py` para centralizar las equivalencias entre los no
 
 Abrir una terminal y ejecutar:
 
-`git clone https://github.com/Dalmi1504/TP2-Sakila-Analisis.git`
+`git clone https://github.com/Dalmi1504/tp2-5.git`
 
 Ingresar a la carpeta:
 
