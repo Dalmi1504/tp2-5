@@ -1,11 +1,16 @@
 import os
+import sys
 import logging
+from pathlib import Path
 
 import pandas as pd
 import mssql_python
 from dotenv import load_dotenv
-from esquema import nombre_tabla_sql, nombre_columna_sql
 
+# Permite importar esquema.py desde la carpeta principal
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from esquema import nombre_tabla_sql, nombre_columna_sql
 
 # Cargar las variables de conexión desde .env
 load_dotenv()
