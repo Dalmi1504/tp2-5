@@ -694,3 +694,12 @@ Los pagos analizados pertenecen a un período histórico (los pagos de nuestra b
 
 Los valores atípicos identificados mediante IQR requieren interpretación comercial antes de considerarse errores.
 
+38. Archivos originales de Sakila
+
+El archivo `sakila-data.sql` fue utilizado en la Actividad 0 por el script auxiliar `conteo_mysql.py` para obtener los recuentos de registros del origen y compararlos con los de la base migrada a SQL Server, como parte del proceso de reconciliación.
+
+Por su parte, `sakila-schema.sql` se conservó como referencia de la estructura original de la base de datos.
+
+Durante la revisión posterior se comprobó que estos archivos no forman parte del flujo principal de análisis ni del pipeline ETL, ya que los notebooks y el ETL trabajan directamente con `Sakila_Espanol` en SQL Server.
+
+Se decidió conservar ambos archivos como material de referencia y apoyo para la documentación y las verificaciones del proyecto.
