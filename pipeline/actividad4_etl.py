@@ -1,49 +1,24 @@
+
 import os
 import sys
 import logging
 from pathlib import Path
 
 import pandas as pd
-import mssql_python
-from dotenv import load_dotenv
 
-# Permite importar esquema.py desde la carpeta principal
+# Permite importar los módulos desde la carpeta principal
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from esquema import nombre_tabla_sql, nombre_columna_sql
-
-# Cargar las variables de conexión desde .env
-load_dotenv()
+from config_conexion import conectar_sql_server
 
 # Configurar el registro de actividad
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
+
 logger = logging.getLogger(__name__)
-
-
-def conectar_sql_server():
-    """Establece la conexión con SQL Server."""
-    logger.info("Conectando a SQL Server...")
-
-    servidor = os.getenv("DB_SERVER")
-    puerto = os.getenv("DB_PORT")
-    base_datos = os.getenv("DB_NAME")
-    usuario = os.getenv("DB_USER")
-    contrasena = os.getenv("DB_PASSWORD")
-
-    conexion = mssql_python.connect(
-        f"SERVER={servidor},{puerto};"
-        f"DATABASE={base_datos};"
-        f"UID={usuario};"
-        f"PWD={contrasena};"
-        "Encrypt=yes;"
-        "TrustServerCertificate=yes;"
-    )
-
-    logger.info("Conexión establecida correctamente.")
-    return conexion
 
 
 def extraer_sql_server(conexion):

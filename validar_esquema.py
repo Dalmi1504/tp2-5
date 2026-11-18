@@ -1,27 +1,9 @@
 
-import os
-import mssql_python
-from dotenv import load_dotenv
 from esquema import ESQUEMA
+from config_conexion import conectar_sql_server
 
-# 1. Cargar los datos de conexión
-load_dotenv()
-
-servidor = os.getenv("DB_SERVER")
-puerto = os.getenv("DB_PORT")
-base_datos = os.getenv("DB_NAME")
-usuario = os.getenv("DB_USER")
-contrasena = os.getenv("DB_PASSWORD")
-
-# 2. Conectarnos a SQL Server
-conexion = mssql_python.connect(
-    f"SERVER={servidor},{puerto};"
-    f"DATABASE={base_datos};"
-    f"UID={usuario};"
-    f"PWD={contrasena};"
-    "Encrypt=yes;"
-    "TrustServerCertificate=yes;"
-)
+# 1. Conectarnos a SQL Server utilizando la función centralizada
+conexion = conectar_sql_server()
 
 cursor = conexion.cursor()
 
@@ -30,7 +12,7 @@ print("-" * 50)
 
 errores = 0
 
-# 3. Recorrer las tablas del diccionario
+# 2. Recorrer las tablas del diccionario
 for nombre_original, datos in ESQUEMA.items():
 
     nombre_fisico = datos["tabla"]
@@ -59,10 +41,9 @@ for nombre_original, datos in ESQUEMA.items():
     else:
         print(f"{nombre_original}: OK")
 
-# 4. Mostrar resultado final
+# 3. Mostrar resultado final
 print("-" * 50)
 print(f"Columnas faltantes: {errores}")
 
 cursor.close()
 conexion.close()
-

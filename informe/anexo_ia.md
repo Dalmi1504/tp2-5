@@ -167,3 +167,33 @@ En las interacciones revisadas no identificamos un caso en el que la IA propusie
 La verificación consistió en comparar los resultados obtenidos y distinguir entre los hechos observados y conclusiones que requerían información adicional.
 
 Esta experiencia permitió reconocer que, aunque una herramienta de IA pueda ayudar a explicar resultados, la interpretación final debe estar respaldada por los datos disponibles y sus limitaciones.
+
+### 3.1. Ampliación posterior a la devolución docente: prueba de interpretación con IA
+
+A partir de la devolución docente, realizamos una nueva prueba con ChatGPT para evaluar críticamente una interpretación comercial generada por inteligencia artificial.
+
+**Prompt utilizado:**
+
+«La tienda 1 realizó 8.054 operaciones y tiene un ticket promedio de $4,16. La tienda 2 realizó 7.990 operaciones y tiene un ticket promedio de $4,25. Cada tienda tiene un empleado. Interpretá estos resultados y elaborá una conclusión comercial».
+
+**Respuesta obtenida:**
+
+La IA señaló que la tienda 2 podría presentar un mejor rendimiento comercial en términos del importe promedio por operación, aunque aclaró que sería necesario evaluar otros indicadores.
+
+**Análisis crítico del equipo:**
+
+La afirmación requiere una distinción importante: tener un ticket promedio mayor no equivale necesariamente a presentar un mejor desempeño comercial general.
+
+La diferencia entre ambas tiendas es de $0,09, aproximadamente un 2,16 %. Por sí sola, no permite concluir que el empleado de la tienda 2 sea más eficiente.
+
+Para evaluar el desempeño individual sería necesario considerar otras variables, como las horas trabajadas, las tarifas de alquiler y las características de las operaciones.
+
+**Corrección de la interpretación:**
+
+La tienda 2 registra un ticket promedio ligeramente superior al de la tienda 1. Sin embargo, la información disponible no permite atribuir esa diferencia a una mayor eficiencia del empleado.
+
+**Conclusión:**
+
+Esta prueba permitió comprobar que una respuesta generada por IA puede ser numéricamente correcta y, aun así, utilizar expresiones que requieren mayor precisión. La revisión humana permitió distinguir entre una diferencia observable en los datos y una conclusión comercial que necesitaría evidencia adicional.
+
+Esta ampliación se realizó posteriormente a la entrega original, como respuesta a la observación docente.

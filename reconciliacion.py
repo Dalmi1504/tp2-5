@@ -1,20 +1,11 @@
 
-import os
 import csv
-import mssql_python
-from dotenv import load_dotenv
+
 from esquema import ESQUEMA, nombre_tabla_sql
+from config_conexion import conectar_sql_server
 
-# 1. Cargar las variables de conexión
-load_dotenv()
 
-servidor = os.getenv("DB_SERVER")
-puerto = os.getenv("DB_PORT")
-base_datos = os.getenv("DB_NAME")
-usuario = os.getenv("DB_USER")
-contrasena = os.getenv("DB_PASSWORD")
-
-# 2. Leer los recuentos originales de MySQL
+# 1. Leer los recuentos originales de MySQL
 origen_mysql = {}
 
 with open("conteo_origen_mysql.csv", "r", encoding="utf-8") as archivo:
@@ -31,20 +22,15 @@ with open("conteo_origen_mysql.csv", "r", encoding="utf-8") as archivo:
 
         origen_mysql[nombre_tabla] = cantidad
 
-# 3. Conectarnos a SQL Server
-conexion = mssql_python.connect(
-    f"SERVER={servidor},{puerto};"
-    f"DATABASE={base_datos};"
-    f"UID={usuario};"
-    f"PWD={contrasena};"
-    "Encrypt=yes;"
-    "TrustServerCertificate=yes;"
-)
+
+# 2. Conectarnos a SQL Server
+conexion = conectar_sql_server()
 
 cursor = conexion.cursor()
 resultados = []
 
-# 4. Recorrer las 16 tablas y comparar
+
+# 3. Recorrer las 16 tablas y comparar
 for nombre_original in ESQUEMA:
 
     tabla_sql = nombre_tabla_sql(nombre_original)
@@ -70,7 +56,8 @@ for nombre_original in ESQUEMA:
         "diferencia": diferencia
     })
 
-# 5. Mostrar la tabla de reconciliación
+
+# 4. Mostrar la tabla de reconciliación
 print("RECONCILIACIÓN MYSQL VS SQL SERVER")
 print("-" * 65)
 print(f"{'Tabla':<20} {'MySQL':>10} {'SQL Server':>12} {'Diferencia':>12}")
@@ -86,7 +73,8 @@ for fila in resultados:
 
 print("-" * 65)
 
-# 6. Exportar el resultado final
+
+# 5. Exportar el resultado final
 with open(
     "reconciliacion_final.csv",
     "w",
@@ -107,7 +95,8 @@ with open(
     escritor.writeheader()
     escritor.writerows(resultados)
 
-# 7. Cerrar la conexión
+
+# 6. Cerrar la conexión
 cursor.close()
 conexion.close()
 
